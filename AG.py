@@ -142,11 +142,11 @@ def cargar_combinaciones(csv_filename):
 
 def obtener_nombres_mejores_resultados(mejores_resultados, combinaciones):
     nombres_mejores_resultados = []
-    print(mejores_resultados[0], combinaciones[0][1:])
+    
     for resultado in mejores_resultados:
         for combinacion in combinaciones:
             if resultado == combinacion[1:]:
-                nombres_mejores_resultados.append(combinacion[0])  
+                nombres_mejores_resultados.append(combinacion)  
                 break
     return nombres_mejores_resultados
 
@@ -160,7 +160,7 @@ def run( first_population, mutation_probability, mutation_individual_probability
     temp_final = []
     
     while True:
-        if iterator == 150:
+        if iterator == 150 and history[-1]>=0.9:
             
             break
         else:
