@@ -3,6 +3,26 @@ from tkinter import ttk
 import AG
 import matplotlib.pyplot as plt
 from tkinter import messagebox
+import csv
+
+def write_document(best):
+    with open('best.csv', 'w', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+
+        writer.writerow(['Modelo', 'Características'])
+        
+        for idx, modelo_caracteristicas in enumerate(best, start=1):
+            modelo = modelo_caracteristicas[0]
+            caracteristicas = modelo_caracteristicas[1:]
+            tipo, material, color, talla, suela, marca, duracion = caracteristicas
+            
+            caracteristicas_str = (
+                f"Características: Tipo {tipo}, Material {material}, Color {color}, "
+                f"Talla {talla}, Suela {suela}, Marca {marca}, Duración {duracion}"
+            )
+            writer.writerow([f"{idx}. Modelo: {modelo}", caracteristicas_str])
+
+
 
 
 def submit():
@@ -15,16 +35,17 @@ def submit():
     third = best[2]
     message = (
     f"1. Modelo: {first[0]}\n"
-    f"   Características: Tipo - {first[1]}, Material - {first[2]}, Color - {first[3]}, "
-    f"Talla - {first[4]}, Suela - {first[5]}, Marca - {first[6]}, Duración - {first[7]}\n\n"
+    f"   Características: Tipo {first[1]}, Material {first[2]}, Color {first[3]}, "
+    f"Talla {first[4]}, Suela {first[5]}, Marca {first[6]}, Duración {first[7]}\n\n"
     f"2. Modelo: {second[0]}\n"
-    f"   Características: Tipo - {second[1]}, Material - {second[2]}, Color - {second[3]}, "
-    f"Talla - {second[4]}, Suela - {second[5]}, Marca - {second[6]}, Duración - {second[7]}\n\n"
+    f"   Características: Tipo {second[1]}, Material {second[2]}, Color {second[3]}, "
+    f"Talla {second[4]}, Suela {second[5]}, Marca {second[6]}, Duración {second[7]}\n\n"
     f"3. Modelo: {third[0]}\n"
-    f"   Características: Tipo - {third[1]}, Material - {third[2]}, Color - {third[3]}, "
-    f"Talla - {third[4]}, Suela - {third[5]}, Marca - {third[6]}, Duración - {third[7]}"
-)
+    f"   Características: Tipo {third[1]}, Material {third[2]}, Color {third[3]}, "
+    f"Talla {third[4]}, Suela {third[5]}, Marca {third[6]}, Duración {third[7]}"
+    )
     messagebox.showinfo("Mejores zapatos", message)
+    write_document(best)
 
 def generate_graph(history):
     plt.plot(history)
