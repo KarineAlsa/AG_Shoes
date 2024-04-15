@@ -3,12 +3,12 @@ import matplotlib.pyplot as plt
 import csv
 
 tipos = ['deportivo', 'formal', 'casual']
-materiales = ['cuero', 'tela', 'sintetico']
+ocasiones = ['fiesta', 'diario', 'caminar']
 colores = ['negro', 'azul', 'blanco', 'dorado', 'turquesa', 'amarillo', 'rosado', 'lavanda', 'rosado', 'gris', 'violeta']
 tallas = ['24','25', '26','27','28','29']
 suelas = ['goma', 'cuero', 'curva', 'plana', 'tacón']
 marcas = ['Nike', 'Prada', 'Adidas']
-duration = ['Alta', 'Media', 'Baja']
+temporadas = ['Primavera', 'Verano', 'Otoño', 'Invierno']
 
 pesos = []
 
@@ -16,14 +16,14 @@ preferencias_cliente = []
 
 def generar_zapato():
     tipo = random.choice(tipos)
-    material = random.choice(materiales)
+    ocasion = random.choice(ocasiones)
     color = random.choice(colores)
     talla = random.choice(tallas)
     suela = random.choice(suelas)
     marca = random.choice(marcas)
-    duracion = random.choice(duration)
+    temporada = random.choice(temporadas)
 
-    return [tipo, material, color, talla, suela, marca, duracion]
+    return [tipo, ocasion, color, talla, suela, marca, temporada]
 
 
 def add_points_index(poblation):
@@ -81,8 +81,8 @@ def mutation(probability_gen, probability_individual, mutates):
             if random.random() < probability_gen:
                 if i == 0:  # tipo
                     mutates[index_to_mutate][i] = random.choice(tipos)
-                elif i == 1:  # material
-                    mutates[index_to_mutate][i] = random.choice(materiales)
+                elif i == 1:  # Ocasión
+                    mutates[index_to_mutate][i] = random.choice(ocasiones)
                 elif i == 2:  # color
                     mutates[index_to_mutate][i] = random.choice(colores)
                 elif i == 3:  # talla
@@ -91,8 +91,8 @@ def mutation(probability_gen, probability_individual, mutates):
                     mutates[index_to_mutate][i] = random.choice(suelas)
                 elif i == 5:  # marca
                     mutates[index_to_mutate][i] = random.choice(marcas)
-                elif i == 6:  # Duracion
-                    mutates[index_to_mutate][i] = random.choice(duration)
+                elif i == 6:  # Temporada
+                    mutates[index_to_mutate][i] = random.choice(temporadas)
     return mutates
 
 
